@@ -5,12 +5,6 @@ console.log('Firebase Voting App initializing...');
 // Replace this with your own Firebase config
 const firebaseConfig = {
   databaseURL: "https://kaja-szavazas-default-rtdb.europe-west1.firebasedatabase.app/"
-  // To use your own Firebase project:
-  // 1. Go to https://console.firebase.google.com/
-  // 2. Create a new project or use existing
-  // 3. Enable Realtime Database
-  // 4. Replace the databaseURL above with your project's database URL
-  // 5. Add other config properties if needed (apiKey, authDomain, etc.)
 };
 
 // Global application state

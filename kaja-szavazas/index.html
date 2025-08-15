@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaja? - Szavazás</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <main class="voting-app">
+            <header class="question-header">
+                <h1 class="question">Kaja?</h1>
+                <p class="subtitle">Szavazz most!</p>
+            </header>
+            
+            <div class="voting-section">
+                <div class="voting-buttons">
+                    <button id="yes-btn" class="vote-btn vote-btn--yes" data-vote="yes">
+                        <span class="vote-emoji">✓</span>
+                        <span class="vote-text">Igen</span>
+                        <span class="vote-count" id="yes-count">0</span>
+                    </button>
+                    
+                    <button id="no-btn" class="vote-btn vote-btn--no" data-vote="no">
+                        <span class="vote-emoji">✗</span>
+                        <span class="vote-text">Nem</span>
+                        <span class="vote-count" id="no-count">0</span>
+                    </button>
+                </div>
+                
+                <div class="vote-summary">
+                    <div class="total-votes">
+                        <span>Összesen: </span>
+                        <span id="total-count">0</span>
+                        <span> szavazat</span>
+                    </div>
+                </div>
+            </div>
+            
+            <footer class="app-footer">
+                <p class="session-info">A szavazatod csak a session idejére marad meg</p>
+            </footer>
+        </main>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>

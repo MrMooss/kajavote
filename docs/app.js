@@ -4,7 +4,7 @@ console.log('Firebase Voting App initializing...');
 // FIREBASE CONFIGURATION
 // Replace this with your own Firebase config
 const firebaseConfig = {
-  databaseURL: "https://kaja-voting-demo-default-rtdb.firebaseio.com/"
+  databaseURL: "https://kaja-szavazas-default-rtdb.europe-west1.firebasedatabase.app/"
   // To use your own Firebase project:
   // 1. Go to https://console.firebase.google.com/
   // 2. Create a new project or use existing

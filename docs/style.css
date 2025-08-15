@@ -738,7 +738,7 @@ select.form-control {
 }
 
 /* END PERPLEXITY DESIGN SYSTEM */
-/* Custom styles for the Kaja voting app */
+/* Custom styles for the Kaja voting app with Firebase */
 
 .voting-app {
   max-width: 600px;
@@ -769,7 +769,49 @@ select.form-control {
   font-size: var(--font-size-xl);
   color: var(--color-text-secondary);
   font-weight: var(--font-weight-medium);
-  margin: 0;
+  margin: 0 0 var(--space-16) 0;
+}
+
+/* Connection status */
+.connection-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-8);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.status-dot.online {
+  background-color: var(--color-success);
+  box-shadow: 0 0 0 2px rgba(var(--color-success-rgb), 0.3);
+}
+
+.status-dot.offline {
+  background-color: var(--color-error);
+  box-shadow: 0 0 0 2px rgba(var(--color-error-rgb), 0.3);
+}
+
+.status-dot.connecting {
+  background-color: var(--color-warning);
+  box-shadow: 0 0 0 2px rgba(var(--color-warning-rgb), 0.3);
+  animation: pulse-connecting 1.5s infinite;
+}
+
+@keyframes pulse-connecting {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }
 
 /* Voting section */
@@ -811,13 +853,18 @@ select.form-control {
   overflow: hidden;
 }
 
-.vote-btn:hover {
+.vote-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.vote-btn:not(:disabled):hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-lg);
   border-color: var(--color-primary);
 }
 
-.vote-btn:active {
+.vote-btn:not(:disabled):active {
   transform: translateY(0);
 }
 
@@ -832,7 +879,7 @@ select.form-control {
   border-color: var(--color-success);
 }
 
-.vote-btn--yes:hover {
+.vote-btn--yes:not(:disabled):hover {
   background: var(--color-success);
   color: var(--color-btn-primary-text);
 }
@@ -850,7 +897,7 @@ select.form-control {
   border-color: var(--color-error);
 }
 
-.vote-btn--no:hover {
+.vote-btn--no:not(:disabled):hover {
   background: var(--color-error);
   color: var(--color-btn-primary-text);
 }
@@ -881,6 +928,7 @@ select.form-control {
   font-weight: var(--font-weight-bold);
   display: block;
   margin-top: var(--space-8);
+  transition: all var(--duration-fast) var(--ease-standard);
 }
 
 /* Vote summary */
@@ -895,12 +943,19 @@ select.form-control {
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-medium);
   color: var(--color-text-secondary);
+  margin-bottom: var(--space-8);
 }
 
 #total-count {
   font-size: var(--font-size-2xl);
   font-weight: var(--font-weight-bold);
   color: var(--color-primary);
+}
+
+.realtime-info {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  font-style: italic;
 }
 
 /* Footer */
@@ -928,8 +983,46 @@ select.form-control {
   }
 }
 
+@keyframes count-update {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+    color: var(--color-primary);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 .vote-btn.voted {
   animation: pulse 0.3s ease-out;
+}
+
+.vote-count.updated {
+  animation: count-update 0.4s ease-out;
+}
+
+/* Syncing indicator */
+.vote-btn.syncing::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(var(--color-primary-rgb, 33, 128, 141), 0.1), transparent);
+  animation: syncing 1s infinite;
+}
+
+@keyframes syncing {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 /* Responsive adjustments */
@@ -968,5 +1061,9 @@ select.form-control {
   
   .vote-btn--no {
     border-color: var(--color-error);
+  }
+  
+  .status-dot {
+    border: 2px solid var(--color-text);
   }
 }

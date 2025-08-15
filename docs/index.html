@@ -12,17 +12,21 @@
             <header class="question-header">
                 <h1 class="question">Kaja?</h1>
                 <p class="subtitle">Szavazz most!</p>
+                <div class="connection-status">
+                    <span id="status-indicator" class="status-dot offline"></span>
+                    <span id="status-text">Kapcsolódás...</span>
+                </div>
             </header>
             
             <div class="voting-section">
                 <div class="voting-buttons">
-                    <button id="yes-btn" class="vote-btn vote-btn--yes" data-vote="yes">
+                    <button id="yes-btn" class="vote-btn vote-btn--yes" data-vote="yes" disabled>
                         <span class="vote-emoji">✓</span>
                         <span class="vote-text">Igen</span>
                         <span class="vote-count" id="yes-count">0</span>
                     </button>
                     
-                    <button id="no-btn" class="vote-btn vote-btn--no" data-vote="no">
+                    <button id="no-btn" class="vote-btn vote-btn--no" data-vote="no" disabled>
                         <span class="vote-emoji">✗</span>
                         <span class="vote-text">Nem</span>
                         <span class="vote-count" id="no-count">0</span>
@@ -35,15 +39,21 @@
                         <span id="total-count">0</span>
                         <span> szavazat</span>
                     </div>
+                    <div class="realtime-info">
+                        <span>Valós idejű szinkronizáció</span>
+                    </div>
                 </div>
             </div>
             
             <footer class="app-footer">
-                <p class="session-info">A szavazatod csak a session idejére marad meg</p>
+                <p class="session-info">Minden szavazat azonnal látható minden felhasználó számára</p>
             </footer>
         </main>
     </div>
     
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
